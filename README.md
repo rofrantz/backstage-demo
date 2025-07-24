@@ -1,5 +1,8 @@
 # [Backstage](https://backstage.io)
 
+## Sample Repo
+[This](https://github.com/backstage/backstage) is a sample repo for Backstage, a platform for building developer portals.
+
 ## Configuration
 Setup GH authentication by exporting the following environment variables:
 ```sh
