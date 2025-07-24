@@ -13,6 +13,9 @@ import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import { orgPlugin } from '@backstage/plugin-org';
 import { SearchPage } from '@backstage/plugin-search';
 import {
+  TechRadarPage,
+} from '@backstage-community/plugin-tech-radar';
+import {
   TechDocsIndexPage,
   techdocsPlugin,
   TechDocsReaderPage,
@@ -94,6 +97,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/tech-radar" element={<TechRadarPage pageTitle="My custom Tech Radar plugin Page Title" />} />
   </FlatRoutes>
 );
 
