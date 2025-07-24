@@ -12,9 +12,7 @@ import {
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import { orgPlugin } from '@backstage/plugin-org';
 import { SearchPage } from '@backstage/plugin-search';
-import {
-  TechRadarPage,
-} from '@backstage-community/plugin-tech-radar';
+import { TechRadarPage } from '@backstage-community/plugin-tech-radar';
 import {
   TechDocsIndexPage,
   techdocsPlugin,
@@ -38,6 +36,7 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
+import { githubAuthApiRef } from '@backstage/core-plugin-api';
 
 const app = createApp({
   apis,
@@ -59,7 +58,21 @@ const app = createApp({
     });
   },
   components: {
-    SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
+    SignInPage: props => (
+      <SignInPage
+        {...props}
+        auto
+        providers={[
+          'guest',
+          {
+            id: 'github-auth-provider',
+            title: 'GitHub',
+            message: 'Sign in using GitHub',
+            apiRef: githubAuthApiRef,
+          },
+        ]}
+      />
+    ),
   },
 });
 
@@ -97,7 +110,12 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
-    <Route path="/tech-radar" element={<TechRadarPage pageTitle="My custom Tech Radar plugin Page Title" />} />
+    <Route
+      path="/tech-radar"
+      element={
+        <TechRadarPage pageTitle="My custom Tech Radar plugin Page Title" />
+      }
+    />
   </FlatRoutes>
 );
 
