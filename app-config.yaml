@@ -1,6 +1,9 @@
 app:
   title: Scaffolded Backstage App
   baseUrl: http://localhost:3000
+  listen:
+    # listen on all interfaces
+    host: 0.0.0.0
 
 organization:
   name: Test Backstage Company
